@@ -161,6 +161,8 @@ uv run cobalt-patcher \
 | [`EthanArbuckle/fairplay-decrypt`](https://github.com/EthanArbuckle/fairplay-decrypt) | GPL-3.0 | 使用自己设备提取的 16 字节 `credential.bin` 离线解密 FairPlay 加密 IPA | `python decrypt.py official.ipa decrypted.ipa --credential credential.bin` |
 | [`reisxd/TizenTubeCobalt`](https://github.com/reisxd/TizenTubeCobalt) | BSD-3-Clause | 面向 YouTube TV Leanback 界面的开源油猴脚本（去广告、SponsorBlock、倍速等） | 上传 `userScript.js` 到 TrollStore Lite TV `:8787` 或通过 `--userscript-url` 指定 |
 | [`comicchang/trollstore-lite-tv`](https://github.com/comicchang/trollstore-lite-tv) | MIT | 越狱 Apple TV 永久安装器，自动签 GPU entitlements 并内置 `:8787` 油猴脚本托管 | 浏览器打开 `http://<AppleTV-IP>:8787` 拖入补丁 `.ipa` 与 `.js` 脚本 |
+| [`owngoal-dev/Relaxin`](https://github.com/owngoal-dev/Relaxin) | MIT | tvOS 17 RootHide 系越狱环境，提供内核信任缓存能力 | 按 Relaxin 官方渠道在受支持的 Apple TV 上运行 |
+| [`Lakr233/vphone-cli`](https://github.com/Lakr233/vphone-cli) | MIT | 基于 Apple Silicon Mac `Virtualization.framework` 的真固件虚拟机，适合安全研究与调试 | 可选低风险调试环境，详见上游仓库 |
 
 ---
 
@@ -174,6 +176,9 @@ uv run --extra dev pytest -v
 
 ---
 
-## 许可证
+## 许可证、版权与法律免责声明
 
-MIT License — 详见 [LICENSE](LICENSE) 与 [NOTICE](NOTICE)。
+- **许可证与原创声明**：本项目采用 **MIT License**（[LICENSE](LICENSE)），`Copyright (c) 2026 Comic Chang`。全部代码为洁净室独立编写，**未包含**任何 GPL 或无许可证第三方项目的源码。
+- **零版权资产与无解密边界**：本仓库**不包含**任何 `.ipa` 安装包、第三方二进制、固件、图标资源、签名证书或 FairPlay 凭据，且**不实现**任何 DRM / FairPlay 解密功能（加密包 `cryptid != 0` 会被直接拒绝）。
+- **商标与非官方声明**：Apple、Apple TV、tvOS、App Store、FairPlay 为 Apple Inc. 商标；Google、YouTube、Cobalt 为 Google LLC 商标。本项目与上述任何主体均无隶属或背书关系。
+- **用途边界与免责豁免（AS-IS）**：本项目仅用于学习研究、互操作性分析及个人合法拥有的设备与软件的自定义。软件按**"现状"（AS-IS）**提供，不附带任何明示或默示担保。使用者须自行确保遵守所在司法辖区的法律法规及第三方服务条款；作者及贡献者不对因使用或误用本软件导致的任何设备损坏、数据丢失、账号风险或其他直接/间接损失承担责任。完整声明见 [NOTICE](NOTICE)。

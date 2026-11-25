@@ -161,6 +161,8 @@ None of the tools below are bundled in this repository; install and run them sep
 | [`EthanArbuckle/fairplay-decrypt`](https://github.com/EthanArbuckle/fairplay-decrypt) | GPL-3.0 | Decrypt FairPlay-encrypted arm64 IPAs offline using your own device's 16-byte `credential.bin` | `python decrypt.py official.ipa decrypted.ipa --credential credential.bin` |
 | [`reisxd/TizenTubeCobalt`](https://github.com/reisxd/TizenTubeCobalt) | BSD-3-Clause | Open-source userscript for YouTube TV Leanback UI (ad-blocking, SponsorBlock, speed controls) | Upload `userScript.js` to TrollStore Lite TV `:8787` or pass via `--userscript-url` |
 | [`comicchang/trollstore-lite-tv`](https://github.com/comicchang/trollstore-lite-tv) | MIT | Jailbroken tvOS permanent installer with GPU entitlements & local `:8787` userscript host | Drag patched `.ipa` & `.js` scripts into `http://<AppleTV-IP>:8787` |
+| [`owngoal-dev/Relaxin`](https://github.com/owngoal-dev/Relaxin) | MIT | RootHide-based tvOS 17 jailbreak environment providing kernel trustcache support | Follow Relaxin's official setup guide on supported Apple TV hardware |
+| [`Lakr233/vphone-cli`](https://github.com/Lakr233/vphone-cli) | MIT | Virtualized Apple firmware runner on Apple Silicon Macs (`Virtualization.framework`) for safe debugging | Optional research environment; see upstream repo |
 
 ---
 
@@ -174,6 +176,9 @@ uv run --extra dev pytest -v
 
 ---
 
-## License
+## License, Copyright & Legal Disclaimer
 
-MIT License — see [LICENSE](LICENSE) and [NOTICE](NOTICE).
+- **License**: Released under the **MIT License** ([LICENSE](LICENSE)), `Copyright (c) 2026 Comic Chang`. All source code in this repository is a clean-room original implementation; no GPL or unlicensed third-party source code is included.
+- **No Copyrighted Third-Party Assets**: This repository ships **zero** `.ipa` files, binaries, firmware, icons, certificates, or FairPlay keys, and implements **no** DRM/FairPlay decryption (`cryptid != 0` inputs are rejected).
+- **Trademarks & Non-Affiliation**: Apple, Apple TV, tvOS, App Store, and FairPlay are trademarks of Apple Inc.; Google, YouTube, and Cobalt are trademarks of Google LLC. This project is independent and not affiliated with or endorsed by any of them.
+- **Disclaimer & Limitation of Liability (AS-IS)**: Provided strictly for educational, interoperability, and personal customization use on software and hardware you legally own. Software is provided **"AS IS"** without warranty of any kind. Users are solely responsible for compliance with local laws and third-party Terms of Service; the authors accept no liability for any damages, account actions, or device issues. Full details in [NOTICE](NOTICE).

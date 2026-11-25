@@ -1,31 +1,79 @@
-# Third-Party Notices & Legal Compliance
+tvos-cobalt-userscript — Copyright, Third-Party Notices & Legal Disclaimer
+==========================================================================
 
-## Compliance Statement
+1. Copyright & License
+----------------------
+Copyright (c) 2026 Comic Chang.
+Licensed under the MIT License (see LICENSE).
 
-`tvos-cobalt-userscript` is an independent open-source binary patching tool written from scratch
-for educational, interoperability, and personal customization purposes.
+All source code in this repository is independently written from scratch
+(clean-room implementation) and released under the MIT License.
+- No GPL-licensed source code (such as `fairplay-decrypt`) is copied, linked,
+  or bundled in this repository.
+- No unlicensed third-party source code is copied into this repository.
 
-- This repository contains **zero** copyrighted code, binaries, `.ipa` packages, icons, artwork,
-  or FairPlay decryption keys belonging to Apple Inc., Google LLC, or YouTube.
-- Users must legally obtain their own `.ipa` package through their own Apple Account and supply
-  it locally at patch time.
-- Any icon customization (`--invert-icon`) operates strictly on the user's own local `.ipa` at
-  build time and does not ship any third-party visual assets.
+2. Trademark & Non-Affiliation Notice
+-------------------------------------
+- Apple, Apple TV, tvOS, App Store, FairPlay, and Xcode are trademarks of
+  Apple Inc., registered in the U.S. and other countries.
+- Google, YouTube, and Cobalt are trademarks of Google LLC.
 
-## Upstream & Ecosystem Credits
+This project is an independent open-source tool. It is NOT affiliated with,
+endorsed by, sponsored by, or officially connected to Apple Inc., Google LLC,
+YouTube, or any other third party mentioned in documentation.
 
-- **TizenTube Cobalt** (`reisxd/TizenTubeCobalt`) — BSD 3-Clause License. Default optional
-  userscript ecosystem for Smart TV / Cobalt YouTube Leanback UI enhancements.
-- **ipatool** (`majd/ipatool`) — MIT License. Referenced in documentation as an external tool for
-  downloading user-licensed (encrypted) tvOS `.ipa` packages via your own Apple Account.
-- **fairplay-decrypt** (`EthanArbuckle/fairplay-decrypt`) — GPL-3.0 License. Referenced strictly
-  in documentation as an external user-run tool for offline FairPlay decryption using the user's
-  own device credential; no code from `fairplay-decrypt` is included in this repository.
-- **TrollStore Lite TV** (`comicchang/trollstore-lite-tv`) — MIT License. Companion jailbroken
-  tvOS installer with built-in local userscript host (`http://127.0.0.1:8787/api/userscripts.js`).
-- **LIEF** (`lief-project/LIEF`) — Apache-2.0 License. Mach-O parsing dependency.
-- **Capstone** (`capstone-engine/capstone`) — BSD 3-Clause License. ARM64 disassembly dependency.
-- **Prior community research**: Cobalt tvOS 4.54.01 hook points and HDR gate locations were
-  publicly documented by the community (including `Exaphis/mutube`). This project is a clean-room
-  reimplementation with declarative JSON profiles, local hot-reload userscript support,
-  encryption pre-checks, side-by-side bundle rewriting, and local icon inversion.
+3. Zero Copyrighted Assets & Anti-Circumvention Boundary
+--------------------------------------------------------
+- This repository contains ZERO copyrighted third-party source code, compiled
+  binaries, `.ipa` packages, firmware images, app icons, artwork, developer
+  certificates, or FairPlay decryption keys.
+- This tool does NOT perform FairPlay decryption or DRM circumvention; any
+  encrypted Mach-O binary (`cryptid != 0`) is strictly rejected before patching.
+- Optional local icon inversion (`--invert-icon`) operates exclusively on the
+  user's own locally supplied `.ipa` at build time; no third-party artwork is
+  stored or redistributed here.
+
+4. External Tools & Dependencies Referenced (NOT Bundled)
+---------------------------------------------------------
+Runtime Python dependencies (installed via PyPI/uv, not vendored):
+- LIEF (https://github.com/lief-project/LIEF) — Apache-2.0 License.
+- Capstone (https://github.com/capstone-engine/capstone) — BSD 3-Clause License.
+
+External user-run tools referenced in documentation only (NOT bundled):
+- ipatool (https://github.com/majd/ipatool) — MIT License.
+  Used by users to log into their own Apple Account and download legally
+  licensed (FairPlay-encrypted) tvOS `.ipa` packages.
+- fairplay-decrypt (https://github.com/EthanArbuckle/fairplay-decrypt) — GPL-3.0.
+  Referenced strictly as an independent external tool for offline decryption
+  using the user's own device credential; zero code from it is included here.
+- TizenTube Cobalt (https://github.com/reisxd/TizenTubeCobalt) — BSD 3-Clause.
+  Optional community userscript ecosystem for YouTube TV Leanback UI.
+- TrollStore Lite TV (https://github.com/comicchang/trollstore-lite-tv) — MIT.
+  Companion jailbroken tvOS installer with local `:8787` userscript hosting.
+- Relaxin (https://github.com/owngoal-dev/Relaxin) — MIT License.
+  RootHide-based tvOS 17 jailbreak referenced as the Apple TV runtime context.
+- vphone-cli (https://github.com/Lakr233/vphone-cli) — MIT License.
+  Optional macOS Virtualization.framework firmware research tool.
+
+Prior community research acknowledgment:
+- Publicly documented Cobalt tvOS 4.54.01 hook points and HDR gate locations
+  (including community work such as `Exaphis/mutube`) are acknowledged. Because
+  `Exaphis/mutube` carries no open-source license file, none of its source code
+  was copied; all code in this repository was written independently from scratch.
+
+5. Intended Use, Disclaimer of Warranty & Limitation of Liability
+-----------------------------------------------------------------
+This software is provided solely for educational, security research,
+interoperability, and personal customization purposes on devices and software
+copies that the user legally owns.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+Users are solely responsible for ensuring that their use of this tool and any
+external tools complies with all applicable laws in their jurisdiction
+(including copyright and anti-circumvention laws) and any applicable Terms of
+Service. In no event shall the authors or copyright holders be liable for any
+claim, damages, account suspension, device issue, data loss, or other liability
+arising from the use or misuse of this software.
