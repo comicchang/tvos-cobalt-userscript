@@ -162,7 +162,7 @@ None of the tools below are bundled in this repository; install and run them sep
 | [`reisxd/TizenTubeCobalt`](https://github.com/reisxd/TizenTubeCobalt) | BSD-3-Clause | Open-source userscript for YouTube TV Leanback UI (ad-blocking, SponsorBlock, speed controls) | Upload `userScript.js` to TrollStore Lite TV `:8787` or pass via `--userscript-url` |
 | [`comicchang/trollstore-lite-tv`](https://github.com/comicchang/trollstore-lite-tv) | MIT | Jailbroken tvOS permanent installer with GPU entitlements & local `:8787` userscript host | Drag patched `.ipa` & `.js` scripts into `http://<AppleTV-IP>:8787` |
 | [`owngoal-dev/Relaxin`](https://github.com/owngoal-dev/Relaxin) | MIT | RootHide-based tvOS 17 jailbreak environment providing kernel trustcache support | Follow Relaxin's official setup guide on supported Apple TV hardware |
-| [`Lakr233/vphone-cli`](https://github.com/Lakr233/vphone-cli) | MIT | Virtualized Apple firmware runner on Apple Silicon Macs (`Virtualization.framework`) for safe debugging | Optional research environment; see upstream repo |
+| [`Lakr233/vphone-cli`](https://github.com/Lakr233/vphone-cli) | MIT | Virtualized Apple firmware runner on Apple Silicon Macs (`Virtualization.framework`) for safe debugging (per current latest version, tvOS presets only support ~tvOS 26.6–27.x / ~tvOS 27, not tvOS 17.x) | Optional research environment; see upstream repo |
 
 ---
 

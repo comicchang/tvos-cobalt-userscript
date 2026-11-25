@@ -53,11 +53,14 @@ External user-run tools referenced in documentation only (NOT bundled):
 - Relaxin (https://github.com/owngoal-dev/Relaxin) — MIT License.
   RootHide-based tvOS 17 jailbreak referenced as the Apple TV runtime context.
 - vphone-cli (https://github.com/Lakr233/vphone-cli) — MIT License.
-  Optional macOS Virtualization.framework firmware research tool.
+  Optional macOS Virtualization.framework firmware research tool (as of its
+  current latest version, tvOS presets only support recent builds around
+  tvOS 26.6–27.x / ~tvOS 27 and cannot run tvOS 17.x).
 
 Prior community research acknowledgment:
 - Publicly documented Cobalt tvOS 4.54.01 hook points and HDR gate locations
-  (including community work such as `Exaphis/mutube`) are acknowledged. Because
+  (including community work such as `Exaphis/mutube`,
+  https://github.com/Exaphis/mutube) are acknowledged. Because
   `Exaphis/mutube` carries no open-source license file, none of its source code
   was copied; all code in this repository was written independently from scratch.
 

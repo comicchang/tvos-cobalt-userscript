@@ -162,7 +162,7 @@ uv run cobalt-patcher \
 | [`reisxd/TizenTubeCobalt`](https://github.com/reisxd/TizenTubeCobalt) | BSD-3-Clause | 面向 YouTube TV Leanback 界面的开源油猴脚本（去广告、SponsorBlock、倍速等） | 上传 `userScript.js` 到 TrollStore Lite TV `:8787` 或通过 `--userscript-url` 指定 |
 | [`comicchang/trollstore-lite-tv`](https://github.com/comicchang/trollstore-lite-tv) | MIT | 越狱 Apple TV 永久安装器，自动签 GPU entitlements 并内置 `:8787` 油猴脚本托管 | 浏览器打开 `http://<AppleTV-IP>:8787` 拖入补丁 `.ipa` 与 `.js` 脚本 |
 | [`owngoal-dev/Relaxin`](https://github.com/owngoal-dev/Relaxin) | MIT | tvOS 17 RootHide 系越狱环境，提供内核信任缓存能力 | 按 Relaxin 官方渠道在受支持的 Apple TV 上运行 |
-| [`Lakr233/vphone-cli`](https://github.com/Lakr233/vphone-cli) | MIT | 基于 Apple Silicon Mac `Virtualization.framework` 的真固件虚拟机，适合安全研究与调试 | 可选低风险调试环境，详见上游仓库 |
+| [`Lakr233/vphone-cli`](https://github.com/Lakr233/vphone-cli) | MIT | 基于 Apple Silicon Mac `Virtualization.framework` 的虚拟化固件工具，适合安全研究与调试（按当前最新版本限制，其 tvOS 预设仅支持约 tvOS 26.6–27.x / tvOS 27 左右，不支持 tvOS 17.x） | 可选低风险调试环境，详见上游仓库 |
 
 ---
 
