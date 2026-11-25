@@ -16,8 +16,11 @@ for educational, interoperability, and personal customization purposes.
 
 - **TizenTube Cobalt** (`reisxd/TizenTubeCobalt`) — BSD 3-Clause License. Default optional
   userscript ecosystem for Smart TV / Cobalt YouTube Leanback UI enhancements.
-- **ipatool** (`majd/ipatool`) — MIT License. Referenced in documentation for downloading
-  user-licensed tvOS `.ipa` packages via your own Apple Account.
+- **ipatool** (`majd/ipatool`) — MIT License. Referenced in documentation as an external tool for
+  downloading user-licensed (encrypted) tvOS `.ipa` packages via your own Apple Account.
+- **fairplay-decrypt** (`EthanArbuckle/fairplay-decrypt`) — GPL-3.0 License. Referenced strictly
+  in documentation as an external user-run tool for offline FairPlay decryption using the user's
+  own device credential; no code from `fairplay-decrypt` is included in this repository.
 - **TrollStore Lite TV** (`comicchang/trollstore-lite-tv`) — MIT License. Companion jailbroken
   tvOS installer with built-in local userscript host (`http://127.0.0.1:8787/api/userscripts.js`).
 - **LIEF** (`lief-project/LIEF`) — Apache-2.0 License. Mach-O parsing dependency.

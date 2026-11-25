@@ -50,32 +50,48 @@ Apple TV ──▶ 自动拉取 http://127.0.0.1:8787/api/userscripts.js（本�
 
 ---
 
-### 第 1 步：用自己的 Apple ID 获取官方 tvOS IPA
+### 第 1 步：使用 [`majd/ipatool`](https://github.com/majd/ipatool) 下载本人合法拥有的官方 IPA
+
+[`ipatool`](https://github.com/majd/ipatool) 是 GitHub 上的开源命令行工具（MIT 协议），用于登录你自己的 Apple ID 并下载你合法拥有的应用 `.ipa`（下载下来的是原版 FairPlay 加密包，`cryptid=1`）。
 
 ```sh
-# 1) 登录本人 Apple 账号
+# 1) 安装 ipatool
+brew install ipatool
+
+# 2) 登录本人 Apple 账号
 ipatool auth login
 
-# 2) 下载官方 tvOS 版 YouTube IPA（免费应用需带 --purchase 获取授权）
+# 3) 下载官方 tvOS 版 YouTube IPA（免费应用需带 --purchase 绑定账号授权）
 ipatool download --bundle-identifier com.google.ios.youtube --platform appletv --purchase -o YouTube-tvOS-official.ipa
 ```
 
-> 如需下载与内置 Profile（`youtube-tvos-4.54.01`）精确匹配的历史版本，可在 `ipatool download` 中附加 `--external-version-id <版本ID>`。
+> 如需下载与内置 Profile（`youtube-tvos-4.54.01`）精确匹配的历史版本，可在 `ipatool download` 中附加 `--external-version-id <版本ID>`（可用 `ipatool list-versions -b com.google.ios.youtube --platform appletv` 查询）。
 
 ---
 
-### 第 2 步：在本地解密 FairPlay（`cryptid 1 → 0`）
+### 第 2 步：使用 [`EthanArbuckle/fairplay-decrypt`](https://github.com/EthanArbuckle/fairplay-decrypt) 在本地解密 FairPlay
 
-App Store 下载的官方 IPA 带有 FairPlay 加密（`cryptid=1`），必须先在本地解密才能打补丁并 ad-hoc 签名。使用开源 FairPlay 解密工具（如 `fairplay-decrypt`）配合你从自己设备上提取的 16 字节账号凭据解密：
+[`fairplay-decrypt`](https://github.com/EthanArbuckle/fairplay-decrypt) 是开源纯 Python 解密工具（GPL-3.0 协议，支持 macOS / Linux），配合从你自己越狱设备上提取的 16 字节账号绑定凭据 `credential.bin`，离线解密 arm64 Mach-O 页面并将 `cryptid` 清零为 `0`。
 
 ```sh
+# 1) 获取并初始化 fairplay-decrypt
+git clone https://github.com/EthanArbuckle/fairplay-decrypt.git
+cd fairplay-decrypt
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -r requirements.txt
+
+# 2) 从你自己的越狱设备提取 16 字节账号凭据 credential.bin
+#    （按 fairplay-decrypt 仓库内 credential-retrieval/README.md 说明操作）
+
+# 3) 本地离线解密你合法获取的官方 IPA（输出文件不能预先存在）
 python decrypt.py \
-  --credential /path/to/your/credential.bin \
-  YouTube-tvOS-official.ipa \
-  YouTube-tvOS-decrypted.ipa
+  /path/to/YouTube-tvOS-official.ipa \
+  /path/to/YouTube-tvOS-decrypted.ipa \
+  --credential /path/to/credential.bin
 ```
 
-`cobalt-patcher` 在打补丁前会自动校验 `LC_ENCRYPTION_INFO_64` 的 `cryptid == 0`，若误传加密包会直接报错提示。
+`cobalt-patcher` 在打补丁前会自动校验 `LC_ENCRYPTION_INFO_64` 的 `cryptid == 0`，若误传未解密包会直接报错提示。
 
 ---
 
@@ -132,6 +148,19 @@ uv run cobalt-patcher \
   --userscript-url https://cdn.jsdelivr.net/npm/@foxreis/tizentube/dist/userScript.js \
   --fallback-url ""
 ```
+
+---
+
+## 参考工具
+
+以下外部开源工具**均未打包进本仓库**，按需单独安装使用：
+
+| 工具 | 许可证 | 作用 | 简明用法 |
+|---|---|---|---|
+| [`majd/ipatool`](https://github.com/majd/ipatool) | MIT | 登录本人 Apple 账号，下载合法拥有的官方（加密）tvOS `.ipa` | `ipatool auth login && ipatool download -b com.google.ios.youtube --platform appletv --purchase -o official.ipa` |
+| [`EthanArbuckle/fairplay-decrypt`](https://github.com/EthanArbuckle/fairplay-decrypt) | GPL-3.0 | 使用自己设备提取的 16 字节 `credential.bin` 离线解密 FairPlay 加密 IPA | `python decrypt.py official.ipa decrypted.ipa --credential credential.bin` |
+| [`reisxd/TizenTubeCobalt`](https://github.com/reisxd/TizenTubeCobalt) | BSD-3-Clause | 面向 YouTube TV Leanback 界面的开源油猴脚本（去广告、SponsorBlock、倍速等） | 上传 `userScript.js` 到 TrollStore Lite TV `:8787` 或通过 `--userscript-url` 指定 |
+| [`comicchang/trollstore-lite-tv`](https://github.com/comicchang/trollstore-lite-tv) | MIT | 越狱 Apple TV 永久安装器，自动签 GPU entitlements 并内置 `:8787` 油猴脚本托管 | 浏览器打开 `http://<AppleTV-IP>:8787` 拖入补丁 `.ipa` 与 `.js` 脚本 |
 
 ---
 

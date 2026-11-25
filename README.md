@@ -50,32 +50,48 @@ Apple TV ──▶ fetches http://127.0.0.1:8787/api/userscripts.js (hot-reload,
 
 ---
 
-### Step 1: Download the Official tvOS IPA (Your Own Apple Account)
+### Step 1: Download the Official tvOS IPA ([`majd/ipatool`](https://github.com/majd/ipatool))
+
+[`ipatool`](https://github.com/majd/ipatool) is an open-source CLI (MIT) that lets you log in with your own Apple Account and download `.ipa` packages you legally own. Downloaded packages remain FairPlay-encrypted (`cryptid=1`).
 
 ```sh
-# 1) Authenticate with your Apple Account
+# 1) Install ipatool
+brew install ipatool
+
+# 2) Authenticate with your own Apple Account
 ipatool auth login
 
-# 2) Download the official tvOS YouTube IPA (check version matches profile, e.g. 4.54.01)
+# 3) Download the official tvOS YouTube IPA (--purchase binds the free app license to your account)
 ipatool download --bundle-identifier com.google.ios.youtube --platform appletv --purchase -o YouTube-tvOS-official.ipa
 ```
 
-> To download a specific historical version matching the built-in `youtube-tvos-4.54.01` profile, pass `--external-version-id <id>` (use `ipatool list-versions -b com.google.ios.youtube --platform appletv` if supported, or pull the `.ipa` from your own device backup).
+> To download a specific historical version matching the built-in `youtube-tvos-4.54.01` profile, pass `--external-version-id <id>` (check available version IDs via `ipatool list-versions -b com.google.ios.youtube --platform appletv`).
 
 ---
 
-### Step 2: Decrypt FairPlay Locally
+### Step 2: Decrypt FairPlay Locally ([`EthanArbuckle/fairplay-decrypt`](https://github.com/EthanArbuckle/fairplay-decrypt))
 
-App Store IPAs are FairPlay-encrypted (`cryptid != 0`) and cannot be patched or ad-hoc signed while encrypted. Decrypt your own IPA locally using an open-source FairPlay decryptor (for example `fairplay-decrypt`) with the 16-byte account-bound credential retrieved from your own device:
+[`fairplay-decrypt`](https://github.com/EthanArbuckle/fairplay-decrypt) is an open-source Python tool (GPL-3.0, macOS/Linux) that decrypts FairPlay-encrypted arm64 IPAs offline using the 16-byte account-bound `credential.bin` retrieved from your own jailbroken device, clearing `cryptid` to `0`.
 
 ```sh
+# 1) Clone and set up fairplay-decrypt
+git clone https://github.com/EthanArbuckle/fairplay-decrypt.git
+cd fairplay-decrypt
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -r requirements.txt
+
+# 2) Retrieve your own 16-byte account credential from your jailbroken device
+#    (follow fairplay-decrypt's credential-retrieval/README.md to generate credential.bin)
+
+# 3) Decrypt your legally obtained IPA locally (output file must not already exist)
 python decrypt.py \
-  --credential /path/to/your/credential.bin \
-  YouTube-tvOS-official.ipa \
-  YouTube-tvOS-decrypted.ipa
+  /path/to/YouTube-tvOS-official.ipa \
+  /path/to/YouTube-tvOS-decrypted.ipa \
+  --credential /path/to/credential.bin
 ```
 
-`cobalt-patcher` automatically verifies `cryptid == 0` before patching and aborts with a clear message if the input IPA is still encrypted.
+`cobalt-patcher` automatically verifies `cryptid == 0` before patching and exits with a clear error if the input IPA is still encrypted.
 
 ---
 
@@ -132,6 +148,19 @@ uv run cobalt-patcher \
   --userscript-url https://cdn.jsdelivr.net/npm/@foxreis/tizentube/dist/userScript.js \
   --fallback-url ""
 ```
+
+---
+
+## Referenced External Tools
+
+None of the tools below are bundled in this repository; install and run them separately as needed:
+
+| Tool | License | Role | Quick Usage |
+|---|---|---|---|
+| [`majd/ipatool`](https://github.com/majd/ipatool) | MIT | Log into your own Apple Account and download your legally licensed (encrypted) tvOS `.ipa` | `ipatool auth login && ipatool download -b com.google.ios.youtube --platform appletv --purchase -o official.ipa` |
+| [`EthanArbuckle/fairplay-decrypt`](https://github.com/EthanArbuckle/fairplay-decrypt) | GPL-3.0 | Decrypt FairPlay-encrypted arm64 IPAs offline using your own device's 16-byte `credential.bin` | `python decrypt.py official.ipa decrypted.ipa --credential credential.bin` |
+| [`reisxd/TizenTubeCobalt`](https://github.com/reisxd/TizenTubeCobalt) | BSD-3-Clause | Open-source userscript for YouTube TV Leanback UI (ad-blocking, SponsorBlock, speed controls) | Upload `userScript.js` to TrollStore Lite TV `:8787` or pass via `--userscript-url` |
+| [`comicchang/trollstore-lite-tv`](https://github.com/comicchang/trollstore-lite-tv) | MIT | Jailbroken tvOS permanent installer with GPU entitlements & local `:8787` userscript host | Drag patched `.ipa` & `.js` scripts into `http://<AppleTV-IP>:8787` |
 
 ---
 
