@@ -1,0 +1,61 @@
+{
+  "name": "youtube-tvos-4.54.01",
+  "description": "YouTube for tvOS 4.54.01 (Cobalt + Starboard + V8, arm64)",
+  "binary_name": "YouTubeUnstable",
+  "script_needle": "yttv",
+  "default_csp_origins": [
+    "http://127.0.0.1:8787",
+    "sponsorblock.inf.re",
+    "sponsor.ajay.app",
+    "dearrow-thumb.ajay.app",
+    "cdn.jsdelivr.net"
+  ],
+  "hooks": [
+    {
+      "name": "script_execute",
+      "kind": "script_inject",
+      "entry_va": "0x100ebd830",
+      "expect_mnemonic": "ldrb",
+      "expect_op_str": "w8, [x0, #0x4b0]"
+    },
+    {
+      "name": "csp_add_directive",
+      "kind": "csp_prepend",
+      "entry_va": "0x101515ac8",
+      "expect_mnemonic": "mov",
+      "expect_op_str": "x21, x2"
+    }
+  ],
+  "media_hooks": [
+    {
+      "name": "vp9_profile2_support",
+      "kind": "vp9_profile2",
+      "entry_va": "0x101180894",
+      "expect_mnemonic": "mov",
+      "expect_op_str": "x20, x1"
+    }
+  ],
+  "hdr_gates": [
+    {
+      "name": "display_criteria_gate",
+      "va": "0x101142be4",
+      "expect_mnemonic": "cbz",
+      "expect_op_str": "w0, #0x101142d0c",
+      "replacement": "0xd503201f"
+    },
+    {
+      "name": "vp9_hdr_hw_gate",
+      "va": "0x10114f840",
+      "expect_mnemonic": "cbz",
+      "expect_op_str": "w0, #0x10114f874",
+      "replacement": "0xd503201f"
+    },
+    {
+      "name": "vp9_hdr_4k60_gate",
+      "va": "0x10114f870",
+      "expect_mnemonic": "b",
+      "expect_op_str": "#0x10114f730",
+      "replacement": "0x14000009"
+    }
+  ]
+}

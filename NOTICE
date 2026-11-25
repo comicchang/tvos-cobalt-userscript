@@ -1,0 +1,28 @@
+# Third-Party Notices & Legal Compliance
+
+## Compliance Statement
+
+`tvos-cobalt-userscript` is an independent open-source binary patching tool written from scratch
+for educational, interoperability, and personal customization purposes.
+
+- This repository contains **zero** copyrighted code, binaries, `.ipa` packages, icons, artwork,
+  or FairPlay decryption keys belonging to Apple Inc., Google LLC, or YouTube.
+- Users must legally obtain their own `.ipa` package through their own Apple Account and supply
+  it locally at patch time.
+- Any icon customization (`--invert-icon`) operates strictly on the user's own local `.ipa` at
+  build time and does not ship any third-party visual assets.
+
+## Upstream & Ecosystem Credits
+
+- **TizenTube Cobalt** (`reisxd/TizenTubeCobalt`) — BSD 3-Clause License. Default optional
+  userscript ecosystem for Smart TV / Cobalt YouTube Leanback UI enhancements.
+- **ipatool** (`majd/ipatool`) — MIT License. Referenced in documentation for downloading
+  user-licensed tvOS `.ipa` packages via your own Apple Account.
+- **TrollStore Lite TV** (`comicchang/trollstore-lite-tv`) — MIT License. Companion jailbroken
+  tvOS installer with built-in local userscript host (`http://127.0.0.1:8787/api/userscripts.js`).
+- **LIEF** (`lief-project/LIEF`) — Apache-2.0 License. Mach-O parsing dependency.
+- **Capstone** (`capstone-engine/capstone`) — BSD 3-Clause License. ARM64 disassembly dependency.
+- **Prior community research**: Cobalt tvOS 4.54.01 hook points and HDR gate locations were
+  publicly documented by the community (including `Exaphis/mutube`). This project is a clean-room
+  reimplementation with declarative JSON profiles, local hot-reload userscript support,
+  encryption pre-checks, side-by-side bundle rewriting, and local icon inversion.

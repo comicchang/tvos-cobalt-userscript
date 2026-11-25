@@ -1,0 +1,19 @@
+# Never commit IPAs, credentials, or build outputs
+*.ipa
+*.tipa
+*.deb
+*.bin
+*.key
+*.p12
+*.mobileprovision
+*.dmp
+*.ips
+
+__pycache__/
+*.py[cod]
+.venv/
+dist/
+build/
+*.egg-info/
+.pytest_cache/
+.DS_Store
