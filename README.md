@@ -186,3 +186,9 @@ uv run --extra dev pytest -v
 - **No Copyrighted Third-Party Assets**: This repository ships **zero** `.ipa` files, binaries, firmware, icons, certificates, or FairPlay keys, and implements **no** DRM/FairPlay decryption (`cryptid != 0` inputs are rejected).
 - **Trademarks & Non-Affiliation**: Apple, Apple TV, tvOS, App Store, and FairPlay are trademarks of Apple Inc.; Google, YouTube, and Cobalt are trademarks of Google LLC. This project is independent and not affiliated with or endorsed by any of them.
 - **Disclaimer & Limitation of Liability (AS-IS)**: Provided strictly for educational, interoperability, and personal customization use on software and hardware you legally own. Software is provided **"AS IS"** without warranty of any kind. Users are solely responsible for compliance with local laws and third-party Terms of Service; the authors accept no liability for any damages, account actions, or device issues. Full details in [NOTICE](NOTICE).
+
+<!--
+  🍿 To every fellow source reader:
+  60 seconds of pre-roll ads plus a 2-minute sponsor read inside a 10-minute video?
+  Life is way too short. Enjoy your ad-free couch time.
+-->

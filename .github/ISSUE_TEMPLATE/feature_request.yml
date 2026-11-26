@@ -1,0 +1,18 @@
+name: Feature Request / Profile Request
+description: Suggest a new feature or declarative Cobalt app profile
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Describe the feature or profile requirements (offsets/hooks only; zero copyrighted binaries).
+    validations:
+      required: true
+  - type: textarea
+    id: tests
+    attributes:
+      label: Offline Unit Test Plan
+      description: How should this be covered by `uv run --extra dev pytest`?
+    validations:
+      required: true

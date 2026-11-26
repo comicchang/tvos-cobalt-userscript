@@ -1,19 +1,61 @@
-# Never commit IPAs, credentials, or build outputs
+# 1. Local Secrets, Env & Runtime Locks
+.env
+.env.local
+.env.*.local
+*.key
+*.p12
+*.mobileprovision
+*credential*.bin
+*.pid
+*.token
+
+# 2. Language Virtualenv, Bytecode & Test/Lint Caches
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# 3. Native / Platform Build Outputs
+dist/
+build/
+*.egg-info/
+
+# 4. Large Binaries, Packages & Archives
 *.ipa
 *.tipa
 *.deb
 *.bin
-*.key
-*.p12
-*.mobileprovision
+*.ipsw
 *.dmp
 *.ips
 
-__pycache__/
-*.py[cod]
-.venv/
-dist/
-build/
-*.egg-info/
-.pytest_cache/
+# 5. Narrow Runtime Logs & Private Snapshots
+local/
+/work/
+
+# 6. Temp Files, Backups, OS & Editor Junk
+*.tmp
+*.bak
+*.orig
+*.swp
+*~
 .DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# 7. Local Agent & Tooling Overlays
+/.drafts/
+.agents/
+.claude/
+.codex/
+.dotai/
+.omp/
+.omo/
+.serena/
+.memsearch/
+.code-review-graph/
