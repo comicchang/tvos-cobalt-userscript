@@ -46,8 +46,22 @@ External user-run tools referenced in documentation only (NOT bundled):
 - fairplay-decrypt (https://github.com/EthanArbuckle/fairplay-decrypt) — GPL-3.0.
   Referenced strictly as an independent external tool for offline decryption
   using the user's own device credential; zero code from it is included here.
+- TizenTube (https://github.com/reisxd/TizenTube) — GPL-3.0.
+  Upstream userscript (`@foxreis/tizentube` on npm/jsDelivr) referenced by URL
+  as an optional fallback; zero code from it is vendored in this repository.
 - TizenTube Cobalt (https://github.com/reisxd/TizenTubeCobalt) — BSD 3-Clause.
-  Optional community userscript ecosystem for YouTube TV Leanback UI.
+  Companion Cobalt YouTube TV project by `reisxd`.
+- SponsorBlock (https://github.com/ajayyy/SponsorBlock, https://sponsor.ajay.app) —
+  GPL-3.0 (client) / AGPL-3.0 (server) / CC BY-NC-SA 4.0 (API database).
+  Community sponsor-skipping service whitelisted in Cobalt CSP and used at
+  runtime by TizenTube; not vendored here.
+- DeArrow (https://github.com/ajayyy/DeArrow, https://dearrow.ajay.app) —
+  GPL-3.0 (client) / AGPL-3.0 (thumbnail cache server).
+  Crowdsourced title/thumbnail service whitelisted in Cobalt CSP and used at
+  runtime by TizenTube; not vendored here.
+- TrollStore TV (https://github.com/comicchang/trollstore-tv) &
+  TrollStore TV Tools (https://github.com/comicchang/trollstore-tv-tools) —
+  Non-Lite CoreTrust permanent installer for tvOS 17.0 & companion BYOIPA toolkit.
 - TrollStore Lite TV (https://github.com/comicchang/trollstore-lite-tv) — MIT.
   Companion jailbroken tvOS installer with local `:8787` userscript hosting.
 - Relaxin (https://github.com/owngoal-dev/Relaxin) — MIT License.

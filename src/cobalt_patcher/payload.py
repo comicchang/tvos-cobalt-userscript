@@ -7,6 +7,9 @@ from typing import Iterable
 from urllib.parse import urlparse
 
 DEFAULT_LOCAL_USERSCRIPT_URL = "http://127.0.0.1:8787/api/userscripts.js"
+# Upstream TizenTube (@foxreis/tizentube, https://github.com/reisxd/TizenTube, GPL-3.0),
+# which integrates SponsorBlock (https://github.com/ajayyy/SponsorBlock) and DeArrow
+# (https://github.com/ajayyy/DeArrow) at runtime; referenced by URL only, not vendored.
 DEFAULT_FALLBACK_USERSCRIPT_URL = (
     "https://cdn.jsdelivr.net/npm/@foxreis/tizentube/dist/userScript.js"
 )

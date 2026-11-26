@@ -7,7 +7,7 @@
 
 **面向 Apple TV（tvOS）Cobalt 网页壳应用的轻量开源油猴脚本（Userscript）补丁工具。**
 
-支持将 [TizenTube Cobalt](https://github.com/reisxd/TizenTubeCobalt) 或任意自定义 `.js` 油猴脚本注入到 tvOS 版 YouTube 等 Cobalt 应用中，并原生适配 [TrollStore Lite TV v2.1.6+](https://github.com/comicchang/trollstore-lite-tv) 的**本机离线热更新脚本托管（`http://127.0.0.1:8787/api/userscripts.js`）**，同时支持多开改 Bundle ID 与本机图标反色处理。
+支持将 [TizenTube](https://github.com/reisxd/TizenTube) / [TizenTube Cobalt](https://github.com/reisxd/TizenTubeCobalt)（集成 [SponsorBlock](https://github.com/ajayyy/SponsorBlock) 与 [DeArrow](https://github.com/ajayyy/DeArrow)）或任意自定义 `.js` 油猴脚本注入到 tvOS 版 YouTube 等 Cobalt 应用中，原生适配 [TrollStore Lite TV v2.1.6+](https://github.com/comicchang/trollstore-lite-tv) 的**本机离线热更新脚本托管（`http://127.0.0.1:8787/api/userscripts.js`）**以及 [TrollStore TV](https://github.com/comicchang/trollstore-tv) 免越狱冷重启方案，同时支持多开改 Bundle ID 与本机图标反色处理。
 
 > **合规声明**：本仓库**不包含任何** Apple、Google 或 YouTube 的版权代码、二进制文件、`.ipa` 安装包、图标资源或 FairPlay 解密密钥。所有补丁与图标反色操作均在用户本机、针对用户本人合法获取的 `.ipa` 现场执行。详见 [NOTICE](NOTICE)。
 
@@ -159,7 +159,11 @@ uv run cobalt-patcher \
 |---|---|---|---|
 | [`majd/ipatool`](https://github.com/majd/ipatool) | MIT | 登录本人 Apple 账号，下载合法拥有的官方（加密）tvOS `.ipa` | `ipatool auth login && ipatool download -b com.google.ios.youtube --platform appletv --purchase -o official.ipa` |
 | [`EthanArbuckle/fairplay-decrypt`](https://github.com/EthanArbuckle/fairplay-decrypt) | GPL-3.0 | 使用自己设备提取的 16 字节 `credential.bin` 离线解密 FairPlay 加密 IPA | `python decrypt.py official.ipa decrypted.ipa --credential credential.bin` |
-| [`reisxd/TizenTubeCobalt`](https://github.com/reisxd/TizenTubeCobalt) | BSD-3-Clause | 面向 YouTube TV Leanback 界面的开源油猴脚本（去广告、SponsorBlock、倍速等） | 上传 `userScript.js` 到 TrollStore Lite TV `:8787` 或通过 `--userscript-url` 指定 |
+| [`reisxd/TizenTube`](https://github.com/reisxd/TizenTube) | GPL-3.0 | 开源 YouTube TV 油猴脚本（npm/jsDelivr `@foxreis/tizentube`，提供去广告、SponsorBlock、DeArrow、倍速等） | 上传 `userScript.js` 到 TrollStore Lite TV `:8787` 或通过 `--userscript-url` 指定 |
+| [`reisxd/TizenTubeCobalt`](https://github.com/reisxd/TizenTubeCobalt) | BSD-3-Clause | `reisxd` 维护的 Cobalt 姊妹项目 | 详见上游仓库 |
+| [`ajayyy/SponsorBlock`](https://github.com/ajayyy/SponsorBlock) | GPL-3.0 / CC BY-NC-SA 4.0（API 数据库） | 社区广告/赞助片段跳过服务（[sponsor.ajay.app](https://sponsor.ajay.app)），由 TizenTube 在运行时集成（已放行 CSP） | 在 TizenTube 电视端设置中直接启用 |
+| [`ajayyy/DeArrow`](https://github.com/ajayyy/DeArrow) | GPL-3.0 | 社区去标题党与缩略图净化服务（[dearrow.ajay.app](https://dearrow.ajay.app)），由 TizenTube 在运行时集成（已放行 CSP） | 在 TizenTube 电视端设置中按需开启 |
+| [`comicchang/trollstore-tv`](https://github.com/comicchang/trollstore-tv) 与 [`trollstore-tv-tools`](https://github.com/comicchang/trollstore-tv-tools) | MIT / BSD-4-Clause（`uicache.m`） | tvOS 17.0 免越狱冷重启存活版 CoreTrust 安装器及配套 `scripts/build-youtube-tvos.sh` 一键脚本 | 使用设备端 `TrollStore TV` 直接安装 |
 | [`comicchang/trollstore-lite-tv`](https://github.com/comicchang/trollstore-lite-tv) | MIT | 越狱 Apple TV 永久安装器，自动签 GPU entitlements 并内置 `:8787` 油猴脚本托管 | 浏览器打开 `http://<AppleTV-IP>:8787` 拖入补丁 `.ipa` 与 `.js` 脚本 |
 | [`owngoal-dev/Relaxin`](https://github.com/owngoal-dev/Relaxin) | MIT | tvOS 17 RootHide 系越狱环境，提供内核信任缓存能力 | 按 Relaxin 官方渠道在受支持的 Apple TV 上运行 |
 | [`Lakr233/vphone-cli`](https://github.com/Lakr233/vphone-cli) | MIT | 基于 Apple Silicon Mac `Virtualization.framework` 的虚拟化固件工具，适合安全研究与调试（按当前最新版本限制，其 tvOS 预设仅支持约 tvOS 26.6–27.x / tvOS 27 左右，不支持 tvOS 17.x） | 可选低风险调试环境，详见上游仓库 |
